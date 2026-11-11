@@ -54,21 +54,21 @@
 
 // Predict the output:
 // javascript
-   const cart = {
-     items: [10, 20, 30],
-     total: 0,
-     addUpArrow() {
-       this.items.forEach((n) => { this.total += n; });
-       return this.total;
-     },
-     addUpRegular() {
-       this.total = 0;
-       this.items.forEach(function (n) { this.total += n; });
-       return this.total;
-     },
-   };
-   console.log(cart.addUpArrow());
-   console.log(cart.addUpRegular());
+//    const cart = {
+//      items: [10, 20, 30],
+//      total: 0,
+//      addUpArrow() {
+//        this.items.forEach((n) => { this.total += n; });
+//        return this.total;
+//      },
+//      addUpRegular() {
+//        this.total = 0;
+//        this.items.forEach(function (n) { this.total += n; });
+//        return this.total;
+//      },
+//    };
+//    console.log(cart.addUpArrow());
+//    console.log(cart.addUpRegular());
 
 // Explain the difference in one sentence.
 // answer:"addUpArrow callback inherits the cart object so runs coorectly which is oppopsite of addUpRegular "
@@ -80,3 +80,48 @@
 //  { ... } as above) for methods of an object. Use an arrow function for callbacks inside a method.
 
 //verdict (my-->) : "addUpArrow is safe"
+
+
+// Part B: Errors and throw (about 50 minutes)
+
+// Predict first, then run.
+
+// Run null.name inside a try/catch, and print error.name and error.message separately.
+//  Write down which part of the message names the kind of problem and which names
+//  the thing that went wrong. You’ve seen these messages for days.
+//  This is the first time you read them on purpose.
+
+// try {
+//     null.name
+// } catch(error){
+    
+//     console.log(error.name)           //Kind of Problem
+//     console.log(error.message)           //what is went wrong
+// }
+
+
+// 7:A function that signals a problem by returning text, 
+// like your old withdraw, can be ignored by accident.
+//  Write divide(a, b) that throws new Error("Cannot divide by zero") when b is 0.
+//  Call it three ways and predict each: a normal call,
+//  a bad call with no try/catch, and a bad call inside try/catch.
+//  Notice what the script does after an uncaught throw.
+
+const divide = (a, b) => {
+    if(b === 0){
+        throw  new Error("Cannot divide by zero")
+    }
+    return a / b; 
+}
+
+console.log(divide(10,5));
+// console.log(divide(10,0));
+try {
+    divide(10,0)
+}catch (error){
+    console.log(error.name)
+    console.log(error.message)
+}
+
+
+console.log("I am running nonstop")
