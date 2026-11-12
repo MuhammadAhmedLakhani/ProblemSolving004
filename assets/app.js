@@ -107,21 +107,66 @@
 //  a bad call with no try/catch, and a bad call inside try/catch.
 //  Notice what the script does after an uncaught throw.
 
-const divide = (a, b) => {
-    if(b === 0){
-        throw  new Error("Cannot divide by zero")
+// const divide = (a, b) => {
+//     if(b === 0){
+//         throw  new Error("Cannot divide by zero")
+//     }
+//     return a / b; 
+// }
+
+// console.log(divide(10,5));
+// // console.log(divide(10,0));
+
+// try {
+//     divide(10,0)
+// }catch (error){
+//     console.log(error.name)
+//     console.log(error.message)
+// }
+
+// console.log("I am running nonstop")
+
+//8: Add a finally block to one of your try/catch calls
+//  that prints "done". Predict when it prints (success, failure, or both).
+
+// const divide = (a, b) => {
+//     if(b === 0){
+//         throw  new Error("Cannot divide by zero")
+//     }
+//     return a / b; 
+// }
+
+// console.log(divide(10,5));
+// // console.log(divide(10,0));
+// try {
+//     divide(10,0)
+// }catch (error){
+//     console.log(error.name)
+//     console.log(error.message)
+// }finally {
+//     console.log("done")
+// }
+
+//finally runs on both success (try runs) and failure (catch runs) scnarios
+
+//9:Write parseAge(text): it returns a number, and it throws with a 
+// clear message for blank text, non-numbers, negatives, 
+// and anything over 120. Write the caller so it catches the error
+//  and prints a friendly line. Test with "25", " ", "abc", "-3", "200", and "0" (is 0 valid? decide).
+
+const parseAge = (text) => {
+    if(text === "") {
+        throw new Error ("Provided age is empty")
+    } 
+    if(parseInt(text) < 0) {
+        throw new Error ("Provided age is negative")
     }
-    return a / b; 
+    if(parseInt(text) > 120) {
+        throw new Error ("Age is not valid range")
+    }
+    if(typeof(parseInt(text)) !== Number){
+        throw new Error ("non number is provided")
+    }
 }
 
-console.log(divide(10,5));
-// console.log(divide(10,0));
-try {
-    divide(10,0)
-}catch (error){
-    console.log(error.name)
-    console.log(error.message)
-}
-
-
-console.log("I am running nonstop")
+parseAge("age")
