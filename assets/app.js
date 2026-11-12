@@ -94,7 +94,7 @@
 // try {
 //     null.name
 // } catch(error){
-    
+
 //     console.log(error.name)           //Kind of Problem
 //     console.log(error.message)           //what is went wrong
 // }
@@ -154,19 +154,43 @@
 // and anything over 120. Write the caller so it catches the error
 //  and prints a friendly line. Test with "25", " ", "abc", "-3", "200", and "0" (is 0 valid? decide).
 
-const parseAge = (text) => {
-    if(text === "") {
-        throw new Error ("Provided age is empty")
-    } 
-    if(parseInt(text) < 0) {
-        throw new Error ("Provided age is negative")
-    }
-    if(parseInt(text) > 120) {
-        throw new Error ("Age is not valid range")
-    }
-    if(typeof(parseInt(text)) !== Number){
-        throw new Error ("non number is provided")
-    }
+// const parseAge = (text) => {
+//     if(text === "") {
+//         throw new Error ("Provided age is empty")
+//     } 
+//     if(parseInt(text) < 0) {
+//         throw new Error ("Provided age is negative")
+//     }
+//     if(parseInt(text) > 120) {
+//         throw new Error ("Age is not valid range")
+//     }
+//     if(typeof(parseInt(text)) !== Number){
+//         throw new Error ("non number is provided")
+//     }
+// }
+
+// parseAge("age")
+
+
+// The bridge to async.Predict what happens:
+// javascript
+try {
+    setTimeout(() => { throw new Error("late"); }, 0);
+    console.log("after setTimeout");
+} catch (error) {
+    console.log("caught:", error.message);
 }
 
-parseAge("age")
+// Does `"caught"` ever print? Run it, then write one sentence explaining why,
+
+//answer --> : yes because when the setTimeout callback runs the error is thrown which 
+// make the catch block runs and prints the  error 
+
+
+//  using what you know about `setTimeout` running later.
+//  This is the central problem async code solves, so keep your sentence.
+
+// When to throw and when to return (answer in one line of your own after exercises 7 to 9):
+
+// searchContacts finding nothing is a normal outcome, so return [].
+// parseAge("abc") means the caller broke the contract, so throw
